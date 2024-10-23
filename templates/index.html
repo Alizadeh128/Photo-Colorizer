@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Colorizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Photo Colorizer</h1>
+            <p>Transform your black and white photos into vibrant color with our AI-powered tool. Simply upload your image and let our model do the magic!</p>
+        </header>
+        <main>
+            <form action="/" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*" required>
+                <button type="submit">Upload and Colorize</button>
+            </form>
+            {% if original %}
+                <section>
+                    <h2>Original Image</h2>
+                    <img src="{{ url_for('uploaded_file', filename=original) }}" alt="Original Image">
+                </section>
+                <section>
+                    <h2>Colorized Image</h2>
+                    <img src="{{ url_for('uploaded_file', filename=colorized) }}" alt="Colorized Image">
+                </section>
+            {% endif %}
+        </main>
+        <footer>
+            <p>© 2024 Photo Colorizer. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
